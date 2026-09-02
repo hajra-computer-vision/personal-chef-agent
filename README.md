@@ -1,302 +1,106 @@
-# 🔗 Introduction to LangChain - Python
+# 🍲 Personal Chef Agent — Heart-Healthy Edition
 
-## Introduction
-
-Welcome to LangChain Academy's **Introduction to LangChain** course!
-
-This repository is the companion to the course located [HERE](https://academy.langchain.com/courses/foundation-introduction-to-langchain-python).
+An LLM agent built with LangChain that suggests recipes based on the ingredients a user has on hand — customized for **heart patients**, with a calorie-awareness tool and image-based ingredient detection layered on top of the original course project.
 
 ---
 
-## 🚀 Setup
+## 🙏 Credit & Origin
 
-### Prerequisites
+This project is based on the **"Personal Chef"** project from LangChain Academy's official course, **[Introduction to LangChain - Python](https://academy.langchain.com/courses/foundation-introduction-to-langchain-python)**.
 
-- The [Chrome](https://www.google.com/chrome/) browser is recommended
-- [git](https://git-scm.com/install/) is recommended
-- A package/project manager: [uv](https://docs.astral.sh/uv/) (recommended) or [pip](https://pypi.org/project/pip/)
-- note: `uv` is also required in Module 2, Lesson 1 to run the MCP server with `uvx`
-- The course requires Python >=3.12, <3.14  If you use `uv`, it will take care of this for you. [More info](#python-virtual-environments)
+The original companion repository is:
+🔗 **[langchain-ai/lca-lc-foundations](https://github.com/langchain-ai/lca-lc-foundations?tab=MIT-1-ov-file)** (MIT License)
 
-### Installation
-
-Download the course repository
-```bash
-# Clone the repo
-git clone --depth 1 https://github.com/langchain-ai/lca-lc-foundations.git
-cd lca-lc-foundations
-```
-
-Make a copy of example.env
-```bash
-# Create .env file
-cp example.env .env
-```
-
-Edit the .env file to include the keys below for [Models](#model-providers) and optionally [LangSmith](#getting-started-with-langsmith)
-
-- Get an OpenAI API Key [here](https://openai.com/index/openai-api/).  
-- Optional for Module1/Lesson1, get an Anthropic API Key [here](https://console.anthropic.com) and a Google API Key [here](https://ai.google.dev/gemini-api/docs/quickstart).
-- Optional, Create a [LangSmith](https://smith.langchain.com/) account and API Key.  
-
-```bash
-# Manual installs for checking: uv
-
-# Required
-OPENAI_API_KEY='your_openai_api_key_here'
-TAVILY_API_KEY='your_tavily_api_key_here'
-
-# optional, only used in Module1, Lesson 1 once
-ANTHROPIC_API_KEY='your_anthropic_api_key_here'
-GOOGLE_API_KEY='your_google_api_key_here'
-
-# Optional for evaluation and tracing
-LANGSMITH_API_KEY='your_langsmith_api_key_here'
-# uncomment to set tracing to true when you set up your LangSmith account
-#LANGSMITH_TRACING=true
-LANGSMITH_PROJECT=lca-lc-foundation
-# Uncomment the following if you are on the EU instance:
-#LANGSMITH_ENDPOINT=https://eu.api.smith.langchain.com
-```
-
-
-Make a virtual environment and install dependencies. [More info](#python-virtual-environments)
-
-<details open>
-<summary>Using uv (recommended)</summary>
-
-```bash
-uv sync
-```
-
-</details>
-
-<details>
-<summary>Using pip</summary>
-
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-</details>
-
-### Setup Verification
-
-After completing the Setup section, we recommend you run the following command to verify your environment.
-
-<details open>
-<summary>Using uv</summary>
-
-```bash
-uv run python env_utils.py
-```
-
-</details>
-
-<details>
-<summary>Using pip</summary>
-
-```bash
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-python env_utils.py
-```
-
-</details>
-
-[If the script flags issues, see this section below.](#setup-verification-issues)
-
-### Run Notebooks [More Info](#development-environment)
-
-<details open>
-<summary>Using uv (recommended)</summary>
-
-```bash
-uv run jupyter lab
-```
-
-</details>
-
-<details>
-<summary>Using pip</summary>
-
-```bash
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-jupyter lab
-```
-
-</details>
-
-### Run Studio (optional)
-
-Ensure you are in the notebooks/module-1 or notebooks/module-3 directory
-
- <details open>
-<summary>Using uv (recommended)</summary>
-
-```bash
-uv run langgraph dev
-```
-
-</details>
-
-<details>
-<summary>Using pip</summary>
-
-```bash
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-langgraph dev
-```
-
-</details>
-
-## 📚 Lessons
-This repository contains three Modules that serve as introductions to many of LangChain's most-used features.
+If you want to build the base version of this project yourself, **start with the original repository above** — it has the full course setup, all three modules (Create Agent, Advanced Agent, Production-Ready Agent), and the original Personal Chef notebook this project extends. This repo assumes you're already familiar with that base and documents only what I changed and added on top of it.
 
 ---
 
-### Module 1: Create Agent
+## ✨ What's Different in This Version
 
-- Foundational models
-- Tools
-- Short-Term Memory
-- Multimodal Messages
-- Project: Personal Chef
+This is not a copy of the course project — it's an extension built for a specific use case: **a personal chef agent designed for people managing heart health**, with two additions beyond the original tutorial:
 
-### Module 2: Advanced Agent
+### 1. Calorie Calculation Tool (new)
+A custom tool was added that calculates approximate calorie counts for suggested recipes, so the agent can reason about calorie load — not just ingredients — when tailoring suggestions for a heart-healthy diet.
 
-- Model Context Protocol (MCP)
-- Context and State
-- Multi-Agent Systems
-- Project: Wedding Planner
+### 2. Heart-Patient-Focused Prompting
+The agent's system prompt and recipe logic were adjusted to prioritize heart-healthy choices (e.g. lower sodium, lower saturated fat) rather than general-purpose recipe suggestions.
 
-### Module 3: Production-Ready Agent
+### 3. Image-Based Ingredient Detection (new)
+If a user doesn't type out their available ingredients, they can instead **upload a photo of their fridge/pantry**, and the agent uses multimodal image analysis to identify ingredients directly from the image before suggesting a recipe.
 
-- What is Middleware?
-- Managing Long Conversations
-- Human In The Loop (HITL)
-- Dynamic Agents
-- Project: Email Assistant
-- Bonus: Agent Chat UI
+---
 
-## 📖 Related Resources
+## 🦙 Running with Ollama (Open-Source Models)
 
-### Setup Verification Issues
+Unlike the original course (which primarily uses OpenAI's `gpt-5-nano`), **this project was tested using open-source models via Ollama**, so it can run locally without an API key or per-token cost.
 
-**What the verification procedure checks:**
-- ✅ Python executable location and version (must be >=3.12, <3.14)
-- ✅ Virtual environment is properly activated
-- ✅ Required packages are installed with correct versions
-- ✅ Packages are in the correct Python version's site-packages
-- ✅ Environment variables (API keys) are properly configured
+### Setup Steps
 
-**Configuration Issues and Solutions:**
+**1. Install Ollama**
+Download and install from [ollama.com](https://ollama.com) for your OS.
 
-<details>
-<summary>ImportError when running env_utils.py</summary>
-
-If you see an error like `ModuleNotFoundError: No module named 'dotenv'`, you're likely running Python outside the virtual environment.
-
-**Solution:**
-- Use `uv run python env_utils.py` (recommended), or
-- Activate the virtual environment first:
-  - macOS/Linux: `source .venv/bin/activate`
-  - Windows: `.venv\Scripts\activate`
-
-</details>
-
-<details>
-<summary>Environment Variable Conflicts</summary>
-
-If you see a warning about "ENVIRONMENT VARIABLE CONFLICTS DETECTED", you have API keys set in your system environment that differ from your .env file. Since `load_dotenv()` doesn't override existing variables by default, your system values will be used.
-
-**Solutions:**
-1. Do nothing and accept the system environment variable value
-2. Unset the conflicting system environment variables for this shell session (commands provided in warning)
-3. Use `load_dotenv(override=True)` in your notebooks to force .env values to take precedence
-4. Update your .env file or shell init so the values are in agreement
-
-</details>
-
-<details>
-<summary>LangSmith Tracing Errors</summary>
-
-If you see "LANGSMITH_TRACING is enabled but LANGSMITH_API_KEY still has the example/placeholder value", you need to either:
-1. Set a valid LangSmith API key in your .env file, or
-2. Comment out or set `LANGSMITH_TRACING=false` in your .env file
-
-Note: LangSmith is optional for evaluation and tracing. The course works without it.
-
-</details>
-
-<details>
-<summary>Wrong Python Version</summary>
-
-If you see a warning about Python version not satisfying requirements, you need Python >=3.12 and <3.14.
-
-**Solution:**
-- If using `uv`: Run `uv sync` which will automatically install the correct Python version
-- If using pip: Install Python 3.12 or 3.13 using [pyenv](#python-virtual-environments) or from [python.org](https://www.python.org/downloads/)
-
-</details>
-
-### Python Virtual Environments
-
-Managing your Python version is often best done with virtual environments. This allows you to select a Python version for the course independent of the system Python version.
-
-<details open>
-<summary>Using uv (recommended)</summary>
-
-`uv` will install a version of Python compatible with the versions specified in the `pyproject.toml` in the `.venv` directory when running the `uv sync` specified above. It will use this version when invoking with `uv run`. For additional information, please see [uv](https://docs.astral.sh/uv/).
-</details>
-
-<details>
-<summary>Using pyenv + pip</summary>
-
-If you are using pip instead of uv, you may prefer using pyenv to manage your Python versions. For additional information, please see [pyenv](https://github.com/pyenv/pyenv).
-
+**2. Pull a model**
 ```bash
-pyenv install 3.12
-pyenv local 3.12
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+ollama pull llama3.1
+```
+*(Any tool-calling-capable Ollama model works — `llama3.1`, `qwen2.5`, or `mistral-nemo` are good choices. For image-based ingredient detection, use a vision-capable model such as `llava` or `llama3.2-vision`.)*
+
+**3. Confirm Ollama is running**
+```bash
+ollama list
+```
+This should show your pulled model(s). Ollama runs a local server automatically after installation.
+
+**4. Install the LangChain Ollama integration**
+```bash
+pip install langchain-ollama
 ```
 
-</details>
+**5. Use it in code**
+```python
+from langchain_ollama import ChatOllama
 
-### Model Providers
+llm = ChatOllama(
+    model="llama3.1",
+    temperature=0.3,
+)
+```
 
-If you don't have an OpenAI API key, you can sign up [here](https://openai.com/index/openai-api/). The course primarily uses gpt-5-nano which is very inexpensive.  If desired, you may also obtain additional API keys for [Anthropic](https://console.anthropic.com) or [Google](https://ai.google.dev/gemini-api/docs/quickstart).
+For the image-analysis feature specifically, use a vision-capable model:
+```python
+vision_llm = ChatOllama(
+    model="llama3.2-vision",
+    temperature=0.2,
+)
+```
 
-This course has been created using particular models and model providers.  You can use other providers, but you will need to update the API keys in the .env file and make some necessary code changes. LangChain supports many chat model providers. [More Info](https://docs.langchain.com/oss/python/integrations/providers/all_providers).
+**6. No API key required**
+Since Ollama runs models locally, no `OPENAI_API_KEY` or similar is needed for the core agent — only add a `TAVILY_API_KEY` in your `.env` if you're using the search tool from the original course.
 
-Tavily is a search provider that returns search results in an LLM-friendly way. They have a generous free tier. [Tavily](https://tavily.com)
+---
 
-### Getting Started with LangSmith
+## 🖼️ How Image-Based Ingredient Detection Works
 
-- Create a [LangSmith](https://smith.langchain.com/) account
-- Create a LangSmith API key
+If the user doesn't list ingredients in their prompt, they can instead attach a photo (e.g. of their fridge or pantry). The agent:
+1. Passes the image to a vision-capable model (via `langchain_ollama`'s multimodal support, or an equivalent vision LLM)
+2. Extracts a list of visible ingredients from the image
+3. Feeds that ingredient list into the same recipe-suggestion + calorie-calculation flow used for typed input
 
-<img width="600" alt="LangSmith Dashboard" src="https://github.com/user-attachments/assets/e39b8364-c3e3-4c75-a287-d9d4685caad5" />
+This means the agent works whether the user types ingredients, uploads a photo, or does both.
 
-<img width="600" alt="LangSmith API Keys" src="https://github.com/user-attachments/assets/2e916b2d-e3b0-4c59-a178-c5818604b8fe" />
+---
 
-- Update the .env file you created with your new LangSmith API Key.
-- Check that LANGSMITH_TRACING is uncommented and set to true.
+## ▶️ How to Run
 
-For more information on LangSmith, see our docs [here](https://docs.langchain.com/langsmith/home).
+1. Clone this repo
+2. Install Ollama and pull a model (see setup steps above)
+3. `pip install -r requirements.txt`
+4. If using the search tool, copy `example.env` to `.env` and add your `TAVILY_API_KEY`
+5. Run the notebook or `python personal_chef.py`
 
-**Note:** If you enable LangSmith tracing by setting `LANGSMITH_TRACING=true` in your .env file, make sure you have a valid `LANGSMITH_API_KEY` set. The environment verification script (`env_utils.py`) will warn you if tracing is enabled without a valid key.
+## 📚 Base Course Reference
 
-### Environment Variables
-
-This course uses the [dotenv](https://pypi.org/project/python-dotenv) module to read key-value pairs from the .env file and set them in the environment in the Jupyter notebooks. They do not need to be set globally in your system environment.
-
-**Note:** If you have API keys already set in your system environment, they may conflict with the ones in your .env file. The `env_utils.py` verification script will detect and warn you about such conflicts. By default, `load_dotenv()` does not override existing environment variables.
-
-
-### Development Environment
-
-The course uses [Jupyter](https://jupyter.org/) notebooks. The Jupyter package is installed in the virtual environment and can be run as described above. Jupyter notebooks can also be edited and run in VSCode or other VSCode variants such as Windsurf or Cursor.
+For the underlying concepts this project builds on (tool-calling, short-term memory, multimodal messages, agent design), see the original course modules in **[langchain-ai/lca-lc-foundations](https://github.com/langchain-ai/lca-lc-foundations?tab=MIT-1-ov-file)**:
+- Module 1: Create Agent (foundational models, tools, memory, multimodal messages, Personal Chef project)
+- Module 2: Advanced Agent (MCP, context/state, multi-agent systems)
+- Module 3: Production-Ready Agent (middleware, HITL, dynamic agents)
