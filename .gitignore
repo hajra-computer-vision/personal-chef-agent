@@ -211,16 +211,17 @@ __marimo__/
 
 # OS junk
 .DS_Store
-"/notebooks/module-2/" 
-"/notebooks/module-3/" 
-"/notebooks/module-1/1.1_foundational_models.ipynb"
-"/notebooks/module-1/1.1_prompting.ipynb"
-"/notebooks/module-1/1.2_tools.ipynb"
-"/notebooks/module-1/1.2_web_search.ipynb"
-"/notebooks/module-1/1.3_memory.ipynb"
-"/notebooks/module-1/1.4_multimodal_messages.ipynb"
-"/notebooks/module-1/1.5_personal_chef.py"
-"/notebooks/module-1/langgraph_old.json"
+.gitignore
+notebooks/module-2/ 
+notebooks/module-3/
+notebooks/module-1/1.1_foundational_models.ipynb
+notebooks/module-1/1.1_prompting.ipynb
+notebooks/module-1/1.2_tools.ipynb
+notebooks/module-1/1.2_web_search.ipynb
+notebooks/module-1/1.3_memory.ipynb
+notebooks/module-1/1.4_multimodal_messages.ipynb
+notebooks/module-1/1.5_personal_chef.py
+notebooks/module-1/langgraph_old.json
 
 
 
